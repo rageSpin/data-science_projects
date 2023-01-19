@@ -1,9 +1,9 @@
-# Data science projects
+# Data science projects🚀
 My personal (public) project to share tool and tips about Data Science and Python
 
 ## What do you need be a **great** data scientist?
 1. Critical Thinking (like every scientist)
-2. Python, R, Julia (at least intermediate level)
+2. Python, R, Julia (at least intermediate level), some C or C++
 3. Statistics
 4. Linear Algebra
 5. Differential Equation

@@ -14,3 +14,13 @@ My personal (public) project to share tool and tips about Data Science and Pytho
 10. Big Data Analysis (Spark, map reduce principle, Ray)
 11. ...one to micro/macro topic to specialize your skills (i.e. Autonomous Driving, Reinforcement Learning, Computer Vision)
 
+
+## Goals
+- [ ] Simple Reinforcement Learning (or other online learning system)
+- [ ] Physical Simulation 
+- [ ] Effective Data Visualizations (Seaborn)
+- [ ] One simple and effective tool to improve Computer Vision accuracy (No Flatten Information etc...) like [this](https://github.com/ansh941/MnistSimpleCNN)
+- [ ] -
+
+
+

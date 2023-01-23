@@ -76,7 +76,7 @@ class App:
         self.canvas.bind('<Button-3>', self.reset_block)
         self.canvas.bind('<Button3-Motion>', self.reset_block)
 
-        self.root.bind("<Enter>", self.find_path)
+        self.root.bind("<Return>", self.find_path)
         self.root.bind("<space>", self.reset)
         self.root.mainloop()
 

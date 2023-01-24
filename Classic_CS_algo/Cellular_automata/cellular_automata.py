@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as playlist
+import matplotlib.pyplot as plt
 
 
 def get_rule(idx):
@@ -55,8 +55,9 @@ def visualize_board(board, title=None):
     plt.show()
     plt.close()
 
-for i in range(256):
-    rule = get_rule(i)
-    print(rule)
-    board = generate_map([0,1,0], rule, num_iterations=100)
-    visualize_board(board, rule["name"]) 
+if __name__ == '__main__':
+    for i in range(256):
+        rule = get_rule(i)
+        print(rule)
+        board = generate_map([0,1,0], rule, num_iterations=100)
+        visualize_board(board, rule["name"]) 

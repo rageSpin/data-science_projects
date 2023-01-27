@@ -13,16 +13,6 @@ with dpg.viewport_menu_bar():
     with dpg.menu(label="File"):
         dpg.add_menu_item(label="Open Video...", callback=lambda : dpg.show_item("file_dialog"))
 
-    #     with dpg.menu(label="Settings"):
-    #         dpg.add_menu_item(label="Setting 1", callback=print_me, check=True)
-    #         dpg.add_menu_item(label="Setting 2", callback=print_me)
-
-    # dpg.add_menu_item(label="Help", callback=print_me)
-
-    # with dpg.menu(label="Widget Items"):
-    #     dpg.add_checkbox(label="Pick Me", callback=print_me)
-    #     dpg.add_button(label="Press Me", callback=print_me)
-    #     dpg.add_color_picker(label="Color Me", callback=print_me)
 
 @ft.cache
 def _update_textures(frame_counter):

@@ -15,11 +15,15 @@ with dpg.viewport_menu_bar():
 
 
 @ft.cache
-def _update_textures(frame_counter):
+def get_frame(frame_counter):
     frame = vr[frame_counter].asnumpy()
     texture_data = frame/255
     texture_data = texture_data.ravel().astype('float32')
-    dpg.set_value('video_texture', texture_data)
+    return frame
+
+def _update_textures(frame_counter):
+    
+    return dpg.set_value('video_texture', get_frame(frame_counter))
 
 def format_counter(fc):
     minutes, seconds = divmod(fc//30, 60)

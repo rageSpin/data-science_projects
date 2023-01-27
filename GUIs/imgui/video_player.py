@@ -27,7 +27,8 @@ def _update_textures(frame_counter):
 def format_counter(fc):
     minutes, seconds = divmod(fc//30, 60)
     hours, minutes = divmod(minutes, 60)
-    dpg.configure_item("slider", label=f"{hours}:{minutes:02}:{seconds:02}") 
+    # dpg.configure_item("slider", label=f"{hours}:{minutes:02}:{seconds:02}") 
+    dpg.set_value('video_time', f"{hours}:{minutes:02}:{seconds:02}")
 
 raw_data = np.zeros(620*420*3)
 
@@ -37,29 +38,30 @@ with dpg.texture_registry(show=False):
 def change_text(sender, app_data):
     it_conf = dpg.get_item_configuration("progress_bar")
     pos = dpg.get_item_state("progress_bar")['pos']
-    print(it_conf['width'], it_conf['height'])
-    print(pos)
-    print(dpg.get_mouse_pos(local=False))
-    print(dpg.get_mouse_pos(local=True))
-    mouse_pos = dpg.get_mouse_pos()
+    # print(it_conf['width'], it_conf['height'])
+    # print(pos)
+    # print(dpg.get_mouse_pos(local=False))
+    # print(dpg.get_mouse_pos(local=True))
+    mouse_pos = dpg.get_mouse_pos(local=False)
 
     #print(dpg.get_item_state("text_videopath"))
-    min_size = pos[1] - it_conf['height']
-    max_size = pos[1] 
+    min_y = pos[1] + 20
+    max_y = pos[1] + it_conf['height'] + 20
 
-    if mouse_pos[1] >= min_size and mouse_pos[1] <= max_size:
-        print("inside progress bar")
-        
-    
-    
+    min_x = pos[0]
+    max_x = pos[0] + it_conf['width']
 
-    # if dpg.is_item_hovered("progress_bar"):
-    #     dpg.set_value("text item", f"Stop Hovering Me, Go away!!")
-    # else:
-    #     dpg.set_value("text item", f"Hover Me!")
+    if mouse_pos[1] >= min_y and mouse_pos[1] <= max_y:
+        if mouse_pos[0] >= min_x and mouse_pos[0] <= max_x:
+            print("inside progress bar")
+            norm_prog = (mouse_pos[0]-min_x)/(max_x-min_x)
+            #dpg.configure_item('progress_bar', default_value=norm_prog)
+            dpg.set_value('frame_progress', norm_prog)
+            #dpg.set_value("frame_counter", int(dpg.get_item_configuration('slider')['max_value']*norm_prog))
 
 with dpg.handler_registry():
     dpg.add_mouse_click_handler(callback=change_text)
+
 
 # main window
 with dpg.window(pos=(0,0), width=705, height=560, show=True):
@@ -68,8 +70,10 @@ with dpg.window(pos=(0,0), width=705, height=560, show=True):
         dpg.add_text(source='video_filepath', show_label=True)
     
     dpg.add_image(texture_tag="video_texture")
-    dpg.add_slider_int(label="n_frame", tag='slider', width=620, min_value=0, max_value=0, default_value=0, format='', source='frame_counter', show=False)
-    dpg.add_progress_bar(label='n_frame', default_value=0.1, width=620, height=20, tag='progress_bar')
+    # dpg.add_slider_float(label="n_frame", tag='slider', width=620, min_value=0, max_value=1, default_value=0, format='', source='frame_progress')#, show=False)
+    with dpg.group(horizontal=True):
+        dpg.add_progress_bar(label='n_frame', default_value=0, width=620, height=5, tag='progress_bar', source='frame_progress')
+        dpg.add_text("", tag='video_time', wrap=0)
 
 # only for fast testing
 dpg.set_value("video_filepath", "C:\\Users\\stefano.giannini_ama\\Videos\\GUI_video-demo_coherent-interaction.mp4")
@@ -77,20 +81,24 @@ dpg.set_value("video_running", True)
 
 dpg.setup_dearpygui()
 dpg.show_viewport()
+dpg.show_style_editor()
 # dpg.start_dearpygui()
 while dpg.is_dearpygui_running():
 
     if dpg.get_value("video_running"):
         try:
-            #print("ok")
-            frame_counter = dpg.get_value('frame_counter')
+            frame_counter = int(dpg.get_value('frame_progress')*video_len)
+            #print(frame_counter)
             _update_textures(frame_counter)
-            dpg.set_value('frame_counter', frame_counter+1)
+            dpg.set_value('frame_progress', dpg.get_value('frame_progress')+step)
             format_counter(frame_counter)
         except:
             vr = decord.VideoReader(dpg.get_value('video_filepath'), width=620, height=420)
+            step = 1/len(vr)
+            video_len = len(vr)
+            print(video_len, step)
             # print(vr.get_avg_fps())
-            dpg.configure_item("slider", max_value=len(vr))
+            #dpg.configure_item("slider", max_value=len(vr))
 
     time.sleep(1/(dpg.get_value('fps')*2))
     # if frame_counter%60 == 0: print(dpg.get_frame_rate())

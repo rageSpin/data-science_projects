@@ -5,6 +5,7 @@ with dpg.value_registry():
     dpg.add_bool_value(default_value=False, tag="video_running")
     dpg.add_string_value(default_value="", tag="video_filepath")
     dpg.add_int_value(default_value=0, tag='frame_counter')
+    dpg.add_float_value(default_value=0, tag='frame_progress')
     dpg.add_int_value(default_value=0, tag='max_frames')
     dpg.add_float_value(default_value=30, tag='fps')
 

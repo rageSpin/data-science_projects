@@ -35,17 +35,31 @@ with dpg.texture_registry(show=False):
     dpg.add_raw_texture(width=620, height=420, default_value=raw_data, format=dpg.mvFormat_Float_rgb, tag="video_texture")
 
 def change_text(sender, app_data):
-    print(dpg.get_item_configuration("progress_bar"))
-    print(dpg.get_item_state("progress_bar"))
-    print(dpg.get_item_state("text_videopath"))
+    it_conf = dpg.get_item_configuration("progress_bar")
+    pos = dpg.get_item_state("progress_bar")['pos']
+    print(it_conf['width'], it_conf['height'])
+    print(pos)
+    print(dpg.get_mouse_pos(local=False))
+    print(dpg.get_mouse_pos(local=True))
+    mouse_pos = dpg.get_mouse_pos()
+
+    #print(dpg.get_item_state("text_videopath"))
+    min_size = pos[1] - it_conf['height']
+    max_size = pos[1] 
+
+    if mouse_pos[1] >= min_size and mouse_pos[1] <= max_size:
+        print("inside progress bar")
+        
     
-    if dpg.is_item_hovered("progress_bar"):
-        dpg.set_value("text item", f"Stop Hovering Me, Go away!!")
-    else:
-        dpg.set_value("text item", f"Hover Me!")
+    
+
+    # if dpg.is_item_hovered("progress_bar"):
+    #     dpg.set_value("text item", f"Stop Hovering Me, Go away!!")
+    # else:
+    #     dpg.set_value("text item", f"Hover Me!")
 
 with dpg.handler_registry():
-    dpg.add_mouse_move_handler(callback=change_text)
+    dpg.add_mouse_click_handler(callback=change_text)
 
 # main window
 with dpg.window(pos=(0,0), width=705, height=560, show=True):
@@ -55,7 +69,7 @@ with dpg.window(pos=(0,0), width=705, height=560, show=True):
     
     dpg.add_image(texture_tag="video_texture")
     dpg.add_slider_int(label="n_frame", tag='slider', width=620, min_value=0, max_value=0, default_value=0, format='', source='frame_counter', show=False)
-    dpg.add_progress_bar(label='n_frame', default_value=0.1, width=620, tag='progress_bar')
+    dpg.add_progress_bar(label='n_frame', default_value=0.1, width=620, height=20, tag='progress_bar')
 
 # only for fast testing
 dpg.set_value("video_filepath", "C:\\Users\\stefano.giannini_ama\\Videos\\GUI_video-demo_coherent-interaction.mp4")

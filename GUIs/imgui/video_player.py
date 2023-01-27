@@ -7,7 +7,7 @@ import numpy as np
 import time
 import functools as ft
 
-dpg.create_viewport(title='Custom Title', width=720, height=580, x_pos=0, y_pos=0)
+dpg.create_viewport(title='Video player', width=720, height=580, x_pos=0, y_pos=0)
 
 with dpg.viewport_menu_bar():
     with dpg.menu(label="File"):

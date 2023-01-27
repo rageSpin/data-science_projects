@@ -8,17 +8,17 @@ with dpg.value_registry():
     dpg.add_float_value(default_value=30, tag='fps')
 
 def callback(sender, app_data):
-    print('OK was clicked.')
-    print("Sender: ", sender)
-    print("App Data: ", app_data)
+    # print('OK was clicked.')
+    # print("Sender: ", sender)
+    # print("App Data: ", app_data)
     dpg.set_value("video_filepath", app_data['file_path_name'])
     dpg.set_value("frame_counter", 0)
     dpg.set_value("video_running", True)
 
 def cancel_callback(sender, app_data):
-    print('Cancel was clicked.')
-    print("Sender: ", sender)
-    print("App Data: ", app_data)
+    # print('Cancel was clicked.')
+    # print("Sender: ", sender)
+    # print("App Data: ", app_data)
 
 
 with dpg.file_dialog(height=360, directory_selector=False, show=False, callback=callback, tag="file_dialog",

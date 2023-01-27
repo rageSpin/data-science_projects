@@ -11,6 +11,7 @@ def callback(sender, app_data):
     # print('OK was clicked.')
     # print("Sender: ", sender)
     # print("App Data: ", app_data)
+    print(globals())
     dpg.set_value("video_filepath", app_data['file_path_name'])
     dpg.set_value("frame_counter", 0)
     dpg.set_value("video_running", True)
@@ -19,6 +20,7 @@ def cancel_callback(sender, app_data):
     # print('Cancel was clicked.')
     # print("Sender: ", sender)
     # print("App Data: ", app_data)
+    pass
 
 
 with dpg.file_dialog(height=360, directory_selector=False, show=False, callback=callback, tag="file_dialog",

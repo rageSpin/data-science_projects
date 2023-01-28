@@ -25,7 +25,7 @@ def _update_textures(frame_counter):
     return dpg.set_value('video_texture', get_frame(frame_counter))
 
 def format_counter(fc):
-    minutes, seconds = divmod(fc//30, 60)
+    minutes, seconds = divmod(fc//60, 60)
     hours, minutes = divmod(minutes, 60)
     # dpg.configure_item("slider", label=f"{hours}:{minutes:02}:{seconds:02}") 
     dpg.set_value('video_time', f"{hours}:{minutes:02}:{seconds:02}")
@@ -90,11 +90,12 @@ while dpg.is_dearpygui_running():
             _update_textures(frame_counter)
             dpg.set_value('frame_progress', dpg.get_value('frame_progress')+step)
             format_counter(frame_counter)
-        except:
+        except Exception as e:
             vr = decord.VideoReader(dpg.get_value('video_filepath'), width=620, height=420)
             step = 1/len(vr)
             video_len = len(vr)
-            print(video_len, step)
+            # print(video_len, step)
+            print(e)
             # print(vr.get_avg_fps())
             #dpg.configure_item("slider", max_value=len(vr))
 

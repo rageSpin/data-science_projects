@@ -13,7 +13,7 @@ def callback(sender, app_data):
     # print('OK was clicked.')
     # print("Sender: ", sender)
     # print("App Data: ", app_data)
-    print(globals())
+    #print(globals())
     dpg.set_value("video_filepath", app_data['file_path_name'])
     dpg.set_value("frame_counter", 0)
     dpg.set_value("video_running", True)

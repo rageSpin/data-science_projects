@@ -2,8 +2,10 @@ from PyQt6.QtGui import QIcon, QFont
 from PyQt6.QtCore import QDir, Qt, QUrl, QSize
 from PyQt6.QtMultimedia import QMediaPlayer
 from PyQt6.QtMultimediaWidgets import QVideoWidget
-from PyQt6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel, 
+from PyQt6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel, QStyleFactory,
         QPushButton, QSizePolicy, QSlider, QStyle, QVBoxLayout, QWidget, QStatusBar)
+
+print(QStyleFactory.keys())
 
 class VideoPlayer(QWidget):
 
@@ -99,7 +101,12 @@ class VideoPlayer(QWidget):
 
 if __name__ == '__main__':
     import sys
+    from qt_material import apply_stylesheet
     app = QApplication(sys.argv)
+
+    # setup stylesheet
+    apply_stylesheet(app, theme='light_blue.xml')
+
     player = VideoPlayer()
     player.setWindowTitle("Player")
     player.resize(900, 600)

@@ -1,7 +1,7 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.graphics import Color
-from kivy.graphics import Line
+from kivy.graphics import Line, Ellipse, Bezier
 
 
 class Draw(Widget):
@@ -12,13 +12,13 @@ class Draw(Widget):
         self.update_canvas()
 
     def update_canvas(self, *args):
-        # Widget has a property called canvas
+        self.canvas.clear()
         with self.canvas:
-            Color(0, 1, 0, .5, mode='rgba')
-            Line(points=(350, 400, 500, 800, 650, 400, 300, 650, 700, 650, 350, 400), width=3)
-
-            Color(0, 0, 1, .5, mode='rgba')
-            Line(bezier=(200, 100, 250, 150, 300, 50, 350, 100), width=3)
+            Color(0.0, 1., 0.0, .5, mode='rgba')
+            # self.line1 = Line(points=[200, 100, 100, 200, 350, 250], width=3)
+            #Color(0.0, 0.0, 1., .5, mode='rgba')
+            #Ellipse(pos=self.pos, size=(20,20))
+            Line(points=(10,10), bezier=[0, 0, 100, 150, 30, 50, 200, 220], width=3)
 
 
 class MyApp(App):

@@ -42,12 +42,10 @@ def change_text(sender, app_data):
     # print(pos)
     # print(dpg.get_mouse_pos(local=False))
     # print(dpg.get_mouse_pos(local=True))
+    # print(dpg.get_item_state("video_texture"))
     mouse_pos = dpg.get_mouse_pos(local=False)
-
-    #print(dpg.get_item_state("text_videopath"))
     min_y = pos[1] + 20
     max_y = pos[1] + it_conf['height'] + 20
-
     min_x = pos[0]
     max_x = pos[0] + it_conf['width']
 

@@ -21,7 +21,7 @@ class Draw(Widget):
             c=Color(b=1, a=0.4, r=0, g=0)
             # Line(circle=(150, 150, 50, 90, 180, 20), width=4)
             #Ellipse(pos=self.pos, size=(20,20))
-            Line(bezier=(200, 100, 250, 150, 300, 50, 350, 100), width=5, dash_length=100, dash_offset=10, bezier_precision=100)
+            Line(bezier=(200, 100, 250, 150, 300, 50, 350, 100), width=5, dash_length=100, dash_offset=10, bezier_precision=1000)
             # Bezier(points=[0, 0, 100, 150, 30, 50, 200, 220], width=5, dash_length=100, dash_offset=10)
 
 

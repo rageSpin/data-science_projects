@@ -74,8 +74,8 @@ with dpg.window(pos=(0,0), width=705, height=560, show=True):
         dpg.add_text("", tag='video_time', wrap=0)
 
 # only for fast testing
-dpg.set_value("video_filepath", "C:\\Users\\stefano.giannini_ama\\Videos\\GUI_video-demo_coherent-interaction.mp4")
-dpg.set_value("video_running", True)
+# dpg.set_value("video_filepath", "C:\\Users\\stefano.giannini_ama\\Videos\\GUI_video-demo_coherent-interaction.mp4")
+# dpg.set_value("video_running", True)
 
 dpg.setup_dearpygui()
 dpg.show_viewport()

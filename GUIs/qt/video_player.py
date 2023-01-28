@@ -71,13 +71,13 @@ class VideoPlayer(QWidget):
             self.play()
 
     def play(self):
-        if self.mediaPlayer.PlaybackState == QMediaPlayer.PlaybackState.PlayingState:
+        if self.mediaPlayer.playbackState() == QMediaPlayer.PlaybackState.PlayingState:
             self.mediaPlayer.pause()
         else:
             self.mediaPlayer.play()
 
     def mediaStateChanged(self, state):
-        if self.mediaPlayer.PlaybackState == QMediaPlayer.PlaybackState.PlayingState:
+        if self.mediaPlayer.playbackState() == QMediaPlayer.PlaybackState.PlayingState:
             self.playButton.setIcon(
                     self.style().standardIcon(QStyle.StandardPixmap.SP_MediaPause))
         else:

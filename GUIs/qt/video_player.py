@@ -52,12 +52,12 @@ class VideoPlayer(QWidget):
 
         self.setLayout(layout)
 
-        help(self.mediaPlayer)
+        #help(self.mediaPlayer)
         self.mediaPlayer.setVideoOutput(videoWidget)
         self.mediaPlayer.playbackStateChanged.connect(self.mediaStateChanged)
         self.mediaPlayer.positionChanged.connect(self.positionChanged)
         self.mediaPlayer.durationChanged.connect(self.durationChanged)
-        self.mediaPlayer.error.connect(self.handleError)
+        self.mediaPlayer.errorChanged.connect(self.handleError)
         self.statusBar.showMessage("Ready")
 
     def abrir(self):
@@ -65,20 +65,19 @@ class VideoPlayer(QWidget):
                 ".", "Video Files (*.mp4 *.flv *.ts *.mts *.avi)")
 
         if fileName != '':
-            self.mediaPlayer.setMedia(
-                    QMediaContent(QUrl.fromLocalFile(fileName)))
+            self.mediaPlayer.setSource(QUrl.fromLocalFile(fileName))
             self.playButton.setEnabled(True)
             self.statusBar.showMessage(fileName)
             self.play()
 
     def play(self):
-        if self.mediaPlayer.state() == QMediaPlayer.PlayingState:
+        if self.mediaPlayer.PlaybackState == QMediaPlayer.PlaybackState.PlayingState:
             self.mediaPlayer.pause()
         else:
             self.mediaPlayer.play()
 
     def mediaStateChanged(self, state):
-        if self.mediaPlayer.state() == QMediaPlayer.PlayingState:
+        if self.mediaPlayer.PlaybackState == QMediaPlayer.PlaybackState.PlayingState:
             self.playButton.setIcon(
                     self.style().standardIcon(QStyle.StandardPixmap.SP_MediaPause))
         else:
@@ -105,4 +104,4 @@ if __name__ == '__main__':
     player.setWindowTitle("Player")
     player.resize(900, 600)
     player.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

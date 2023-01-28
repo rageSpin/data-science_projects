@@ -80,10 +80,10 @@ class VideoPlayer(QWidget):
     def mediaStateChanged(self, state):
         if self.mediaPlayer.state() == QMediaPlayer.PlayingState:
             self.playButton.setIcon(
-                    self.style().standardIcon(QStyle.SP_MediaPause))
+                    self.style().standardIcon(QStyle.StandardPixmap.SP_MediaPause))
         else:
             self.playButton.setIcon(
-                    self.style().standardIcon(QStyle.SP_MediaPlay))
+                    self.style().standardIcon(QStyle.StandardPixmap.SP_MediaPlay))
 
     def positionChanged(self, position):
         self.positionSlider.setValue(position)

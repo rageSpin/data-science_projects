@@ -104,8 +104,11 @@ if __name__ == '__main__':
     from qt_material import apply_stylesheet
     app = QApplication(sys.argv)
 
-    # setup stylesheet
-    apply_stylesheet(app, theme='light_blue.xml')
+    # setup stylesheet with qt-material
+    # apply_stylesheet(app, theme='light_blue.xml')
+    
+    # linux default style 
+    app.setStyle("fusion")
 
     player = VideoPlayer()
     player.setWindowTitle("Player")

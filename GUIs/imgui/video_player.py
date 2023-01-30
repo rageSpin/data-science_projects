@@ -48,7 +48,6 @@ def change_text(sender, app_data):
         it_conf = dpg.get_item_configuration("progress_bar")
         pos = dpg.get_item_state("progress_bar")['pos']
         # print(it_conf['width'], it_conf['height'])
-        # print(pos)
         # print(dpg.get_mouse_pos(local=False))
         # print(dpg.get_mouse_pos(local=True))
         # print(dpg.get_item_state("video_texture"))

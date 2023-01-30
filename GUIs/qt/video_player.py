@@ -36,6 +36,7 @@ class VideoPlayer(QWidget):
         self.positionSlider = QSlider(Qt.Orientation.Horizontal)
         self.positionSlider.setRange(0, 0)
         self.positionSlider.sliderMoved.connect(self.setPosition)
+        self.positionSlider.sliderPressed.connect(self.setPosition)
 
         self.statusBar = QStatusBar()
         self.statusBar.setFont(QFont("Noto Sans", 7))
@@ -54,7 +55,6 @@ class VideoPlayer(QWidget):
 
         self.setLayout(layout)
 
-        #help(self.mediaPlayer)
         self.mediaPlayer.setVideoOutput(videoWidget)
         self.mediaPlayer.playbackStateChanged.connect(self.mediaStateChanged)
         self.mediaPlayer.positionChanged.connect(self.positionChanged)
@@ -105,10 +105,10 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     # setup stylesheet with qt-material
-    # apply_stylesheet(app, theme='light_blue.xml')
+    apply_stylesheet(app, theme='dark_blue.xml')
     
     # linux default style 
-    app.setStyle("fusion")
+    #app.setStyle("fusion")
 
     player = VideoPlayer()
     player.setWindowTitle("Player")

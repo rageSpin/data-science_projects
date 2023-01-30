@@ -90,15 +90,10 @@ class VideoPlayer(QWidget):
     def positionChanged(self, position):
         self.positionSlider.setValue(position)
 
-    def slider_clicked(self, event):
-        #self.positionSlider.setValue()
-        print(self.positionSlider.sliderPosition(), event)
-
     def durationChanged(self, duration):
         self.positionSlider.setRange(0, duration)
 
     def setPosition(self, position):
-        #print(self.positionSlider.isSliderDown())
         if self.positionSlider.isSliderDown():
             self.mediaPlayer.setPosition(position)
 

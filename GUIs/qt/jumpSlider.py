@@ -7,7 +7,7 @@ class jumpSlider(QtWidgets.QSlider):
         super(jumpSlider, self).__init__(parent)
 
     def mousePressEvent(self, event):
-        print(event.pos())
+        self.setSliderDown(True)
         self.setValue(
             QtWidgets.QStyle.sliderValueFromPosition(
                 self.minimum(), 
@@ -16,3 +16,20 @@ class jumpSlider(QtWidgets.QSlider):
                 self.width()
             )
         )
+        
+    
+    def mouseMoveEvent(self, event):
+        self.setValue(
+            QtWidgets.QStyle.sliderValueFromPosition(
+                self.minimum(), 
+                self.maximum(), 
+                event.pos().x(), 
+                self.width()
+            )
+        )
+        self.setSliderDown(True)
+    
+    def mouseReleaseEvent(self, ev):
+        self.setSliderDown(False)
+
+    

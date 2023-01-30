@@ -37,8 +37,7 @@ class VideoPlayer(QWidget):
 
         self.positionSlider = jumpSlider(Qt.Orientation.Horizontal)
         self.positionSlider.setRange(0, 0)
-        self.positionSlider.sliderMoved.connect(self.setPosition)
-        #self.positionSlider.
+        self.positionSlider.valueChanged.connect(self.setPosition)
 
         self.statusBar = QStatusBar()
         self.statusBar.setFont(QFont("Noto Sans", 7))
@@ -99,7 +98,9 @@ class VideoPlayer(QWidget):
         self.positionSlider.setRange(0, duration)
 
     def setPosition(self, position):
-        self.mediaPlayer.setPosition(position)
+        #print(self.positionSlider.isSliderDown())
+        if self.positionSlider.isSliderDown():
+            self.mediaPlayer.setPosition(position)
 
     def handleError(self):
         self.playButton.setEnabled(False)

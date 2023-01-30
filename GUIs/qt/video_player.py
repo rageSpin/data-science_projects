@@ -5,6 +5,8 @@ from PyQt6.QtMultimediaWidgets import QVideoWidget
 from PyQt6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel, QStyleFactory,
         QPushButton, QSizePolicy, QSlider, QStyle, QVBoxLayout, QWidget, QStatusBar)
 
+from jumpSlider import jumpSlider
+
 print(QStyleFactory.keys())
 
 class VideoPlayer(QWidget):
@@ -33,7 +35,7 @@ class VideoPlayer(QWidget):
         self.playButton.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_MediaPlay))
         self.playButton.clicked.connect(self.play)
 
-        self.positionSlider = QSlider(Qt.Orientation.Horizontal)
+        self.positionSlider = jumpSlider(Qt.Orientation.Horizontal)
         self.positionSlider.setRange(0, 0)
         self.positionSlider.sliderMoved.connect(self.setPosition)
         #self.positionSlider.

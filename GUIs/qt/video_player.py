@@ -107,7 +107,9 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     # setup stylesheet with qt-material
-    apply_stylesheet(app, theme='dark_blue.xml')
+
+    extra = {"density_scale": "-2"}
+    apply_stylesheet(app, theme='dark_blue.xml', extra=extra)
     
     # linux default style 
     #app.setStyle("fusion")

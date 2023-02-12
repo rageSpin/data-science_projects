@@ -15,7 +15,7 @@ GAMMA = 0.95
 LEARNING_RATE = 0.001
 
 MEMORY_SIZE = 1000000
-BATCH_SIZE = 64*2
+BATCH_SIZE = 64*10
 
 EXPLORATION_MAX = 1.0
 EXPLORATION_MIN = 0.01
@@ -59,7 +59,7 @@ class DQNSolver:
             q_values[0][action] = q_update
             #print(state.shape, q_values.shape)
             x[i], y[i] = state, q_values
-        self.model.fit(x, y, verbose=0)
+        self.model.fit(x, y, verbose=0, epochs=10)
         self.exploration_rate *= EXPLORATION_DECAY
         self.exploration_rate = max(EXPLORATION_MIN, self.exploration_rate)
 

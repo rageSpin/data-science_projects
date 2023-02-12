@@ -15,11 +15,11 @@ GAMMA = 0.95
 LEARNING_RATE = 0.001
 
 MEMORY_SIZE = 1000000
-BATCH_SIZE = 64*10
+BATCH_SIZE = 64
 
 EXPLORATION_MAX = 1.0
 EXPLORATION_MIN = 0.01
-EXPLORATION_DECAY = 0.98
+EXPLORATION_DECAY = 0.995
 
 
 class DQNSolver:
@@ -31,8 +31,8 @@ class DQNSolver:
         self.memory = deque(maxlen=MEMORY_SIZE)
 
         self.model = Sequential()
-        self.model.add(Dense(12, input_shape=(observation_space,), activation="relu"))
-        self.model.add(Dense(12, activation="relu"))
+        self.model.add(Dense(24, input_shape=(observation_space,), activation="relu"))
+        self.model.add(Dense(24, activation="relu"))
         self.model.add(Dense(self.action_space, activation="linear"))
         self.model.compile(loss="mse", optimizer=Adam(learning_rate=LEARNING_RATE))
 
@@ -59,7 +59,7 @@ class DQNSolver:
             q_values[0][action] = q_update
             #print(state.shape, q_values.shape)
             x[i], y[i] = state, q_values
-        self.model.fit(x, y, verbose=0, epochs=3)
+        self.model.fit(x, y, verbose=0)
         self.exploration_rate *= EXPLORATION_DECAY
         self.exploration_rate = max(EXPLORATION_MIN, self.exploration_rate)
 
@@ -87,11 +87,12 @@ def cartpole():
             dqn_solver.remember(state, action, reward, state_next, terminal)
             state = state_next
             if terminal:
-                print("Run: " + str(run) + ", exploration: " + str(round(dqn_solver.exploration_rate, 3)) + ", score: " + str(step))
+                print("Run: " + str(run) + ", exploration: " + str(dqn_solver.exploration_rate) + ", score: " + str(step))
                 # score_logger.add_score(step, run)
-                dqn_solver.experience_replay()
                 break
 
+            dqn_solver.experience_replay()
+        
         if run > 1000:
             break
 

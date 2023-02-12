@@ -59,7 +59,7 @@ class DQNSolver:
             q_values[0][action] = q_update
             #print(state.shape, q_values.shape)
             x[i], y[i] = state, q_values
-        self.model.fit(x, y, verbose=0, epochs=10)
+        self.model.fit(x, y, verbose=0, epochs=3)
         self.exploration_rate *= EXPLORATION_DECAY
         self.exploration_rate = max(EXPLORATION_MIN, self.exploration_rate)
 
@@ -92,7 +92,6 @@ def cartpole():
                 dqn_solver.experience_replay()
                 break
 
-            
         if run > 1000:
             break
 

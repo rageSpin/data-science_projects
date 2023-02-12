@@ -36,14 +36,17 @@ class DQNSolver:
         self.model.add(Dense(self.action_space, activation="linear"))
         self.model.compile(loss="mse", optimizer=Adam(learning_rate=LEARNING_RATE))
 
+
     def remember(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
+
 
     def act(self, state):
         if np.random.rand() < self.exploration_rate:
             return random.randrange(self.action_space)
         q_values = self.model.predict(state, verbose=0)
         return np.argmax(q_values[0])
+
 
     def experience_replay(self):
         if len(self.memory) < BATCH_SIZE:
@@ -62,6 +65,7 @@ class DQNSolver:
         self.model.fit(x, y, verbose=0)
         self.exploration_rate *= EXPLORATION_DECAY
         self.exploration_rate = max(EXPLORATION_MIN, self.exploration_rate)
+
 
 
 def cartpole():

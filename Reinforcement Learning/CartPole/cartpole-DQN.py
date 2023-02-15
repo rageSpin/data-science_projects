@@ -1,5 +1,5 @@
 import random
-import gym
+import gymnasium as gym
 import numpy as np
 from collections import deque
 from keras.models import Sequential
@@ -36,14 +36,17 @@ class DQNSolver:
         self.model.add(Dense(self.action_space, activation="linear"))
         self.model.compile(loss="mse", optimizer=Adam(learning_rate=LEARNING_RATE))
 
+
     def remember(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
+
 
     def act(self, state):
         if np.random.rand() < self.exploration_rate:
             return random.randrange(self.action_space)
         q_values = self.model.predict(state, verbose=0)
         return np.argmax(q_values[0])
+
 
     def experience_replay(self):
         if len(self.memory) < BATCH_SIZE:
@@ -59,9 +62,10 @@ class DQNSolver:
             q_values[0][action] = q_update
             #print(state.shape, q_values.shape)
             x[i], y[i] = state, q_values
-        self.model.fit(x, y, verbose=1)
+        self.model.fit(x, y, verbose=0)
         self.exploration_rate *= EXPLORATION_DECAY
         self.exploration_rate = max(EXPLORATION_MIN, self.exploration_rate)
+
 
 
 def cartpole():
@@ -73,14 +77,15 @@ def cartpole():
     run = 0
     while True:
         run += 1
-        state = env.reset()
+        # print(env.reset())
+        state = env.reset()[0]
         state = np.reshape(state, [1, observation_space])
         step = 0
         while True:
             step += 1
             #env.render()
             action = dqn_solver.act(state)
-            state_next, reward, terminal, info = env.step(action)
+            state_next, reward, terminal, truncated, _ = env.step(action)
             reward = reward if not terminal else -reward
             state_next = np.reshape(state_next, [1, observation_space])
             dqn_solver.remember(state, action, reward, state_next, terminal)

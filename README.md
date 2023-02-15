@@ -1,7 +1,7 @@
 # Data science projects🚀
 My personal (public) project to share tool and tips about Data Science and Python
 
-## What do you need be a **great** data scientist?
+## What do you need to be a **great** data scientist?
 1. Critical Thinking (like every scientist)
 2. Python, R, Julia (at least intermediate level), some C or C++
 3. Statistics
@@ -17,10 +17,12 @@ My personal (public) project to share tool and tips about Data Science and Pytho
 
 ## Goals
 - [ ] Simple Reinforcement Learning (or other online learning system)
-- [ ] Physical Simulation 
+- [ ] Physical Simulation / Biological
 - [ ] Effective Data Visualizations (Seaborn)
 - [ ] One simple and effective tool to improve Computer Vision accuracy (No Flatten Information etc...) like [this](https://github.com/ansh941/MnistSimpleCNN)
-- [ ] -
+- [ ] Explainable AI
+- [ ] Edge AI
+- [ ] Transformers (NLP and Text-to-Image)
 
 
 

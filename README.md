@@ -1,5 +1,5 @@
 # Data science projects🚀
-My personal (public) project to share tool and tips about Data Science and Python
+My personal (public) project to share tools and tips about Data Science and Python
 
 ## What do you need to be a **great** data scientist?
 1. Critical Thinking (like every scientist)

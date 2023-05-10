@@ -10,4 +10,6 @@
 
 ### Offline vs. Online
 
-The above links refers to open-source models which usually needs GPU to run properly in real-time. So, for a mid-budget laptop these models are too slow for real-time implementation (especially if ASR is not the only model that you want to run on the PC).
+The above links refer to open-source models which usually need GPU to run properly in real-time. So, for a mid-budget laptop these models are too slow for real-time implementation (especially if ASR is not the only model that you want to run on the PC).
+
+Most of the time, utilizing *online* API like Google Assistant, IBM, Amazon or Azure is the fastest and simplest way to implement a real-time ASR. However, it should be considered the fact that you need an Internet connection and a credit card to pay for the service.

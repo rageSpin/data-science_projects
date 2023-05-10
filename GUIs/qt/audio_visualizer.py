@@ -121,6 +121,7 @@ class Terrain(object):
         update the mesh and shift the noise each time
         """
         wf_data = self.stream.read(self.CHUNK)
+        print(type(wf_data))
 
         verts, faces, colors = self.mesh(offset=self.offset, wf_data=wf_data)
         self.mesh1.setMeshData(vertexes=verts, faces=faces, faceColors=colors)

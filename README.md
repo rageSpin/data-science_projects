@@ -20,6 +20,7 @@ My personal (public) project to share tools and tips about Data Science and Pyth
 - [x] Simple Reinforcement Learning (or other online learning system)
   - [x] Q-Table
   - [x] Deep Q-Learning (Experience Replay) 
+- [ ] GUI basics (QT, ImGUI, ...)
 - [ ] Physical Simulation / Biological
 - [ ] Effective Data Visualizations (Seaborn)
 - [ ] One simple and effective tool to improve Computer Vision accuracy (No Flatten Information etc...) like [this](https://github.com/ansh941/MnistSimpleCNN)
